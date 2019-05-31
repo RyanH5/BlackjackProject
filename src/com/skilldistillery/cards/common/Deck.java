@@ -5,9 +5,7 @@ import java.util.*;
 public class Deck {
 
 	private List<Card> cards;
-	public Deck() {
-		// TODO Auto-generated constructor stub
-	}
+	public Deck() {}
 	
 	{
 		cards = new ArrayList<>();		
