@@ -1,6 +1,8 @@
 package com.skilldistillery.cards.games;
 
+import java.util.Scanner;
+
 public interface Play {
 
-	public void play();
+	public void playGame(Scanner sc);
 }

@@ -22,11 +22,11 @@ public class Player extends Person {
 
 	@Override
 	public void displayCards() {
+		System.out.print(name + ":");
 		for(Card c : this.getHand().getCards()) {
-			System.out.print( name + ": "+ c.toString()+",");
+			System.out.print("\t\t" + c.toString()+",");
 		}
-		System.out.println("For a total of " + this.getHand().getHandValue());
+		System.out.println("\tTotal: " + this.getHand().getHandValue());
 		
 	}
-
 }

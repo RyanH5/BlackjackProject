@@ -24,6 +24,7 @@ public class CardGame implements Play{
 
 		CardGame game = new CardGame();
 		game.launchGame(sc, deck);
+		sc.close();
 	}
 
 	public void launchGame(Scanner sc, Deck deck) {
@@ -34,17 +35,23 @@ public class CardGame implements Play{
 		String userName = sc.next();
 		switch (response) {
 		case "Y":
-			CardGame currentGame = new BlackJack(deck, userName);
-			currentGame.play();
+			CardGame currentGame = new BlackJack(deck, userName, sc);
+			currentGame.playGame(sc);
 			break;
 
 		default:
-			currentGame = new BlackJack(deck, userName);
-			currentGame.play();
+			currentGame = new BlackJack(deck, userName, sc);
+			currentGame.playGame(sc);
 		}
 	}
 
 	@Override
-	public void play() {}
+	public void playGame(Scanner sc) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+
 
 }
