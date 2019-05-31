@@ -25,6 +25,11 @@ public class Deck {
 		return cards.remove(0);
 	}
 	
+	@Override
+	public String toString() {
+		return "Deck [cards=" + cards + "]";
+	}
+
 	public void shuffle() {
 		Collections.shuffle(cards);
 	}
