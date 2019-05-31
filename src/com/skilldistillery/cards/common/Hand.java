@@ -14,6 +14,7 @@ public class Hand {
 	
 	public void addCard(Card card) {
 		cards.add(card);
+		handValue += card.getValue();
 	}
 	
 	public List<Card> getCards() {

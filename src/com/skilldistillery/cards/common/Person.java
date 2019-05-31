@@ -2,7 +2,7 @@ package com.skilldistillery.cards.common;
 
 public abstract class Person {
 
-	private Hand hand;
+	protected Hand hand = new Hand();
 	
 	public Person() {};
 	
@@ -17,5 +17,7 @@ public abstract class Person {
 	public void setHand(Hand hand) {
 		this.hand = hand;
 	}
+	
+	public abstract void displayCards();
 
 }
