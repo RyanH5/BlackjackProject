@@ -8,22 +8,20 @@ public class BlackJack extends CardGame{
 	private Deck deck;
 	private boolean endOfRound = false;
 	
+	
 	public BlackJack(Deck deck) {
 		this.deck = deck;
+		rounders.add(new Player());
+		rounders.add(new Dealer());
 	}
-	{
-		Person player = new Player();
-		Person dealer = new Dealer();
-	}
+
 	
 	public void play() {
 		while (!endOfRound) {
 			System.out.println("Let's play!");
 			deck.shuffle();
 			System.out.println("PSSHHHHH *CARDS SHUFFLING SOUND* ");
-			
-			
-			
+			break;
 			
 		}
 	}

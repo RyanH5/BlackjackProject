@@ -1,12 +1,13 @@
 package com.skilldistillery.cards;
 
-import java.util.Scanner;
+import java.util.*;
 
 import com.skilldistillery.cards.common.*;
 import com.skilldistillery.cards.games.*;
 
 public class CardGame implements Play{
 
+	protected List<Person> rounders;
 	public CardGame() {}
 
 	public static void main(String[] args) {
