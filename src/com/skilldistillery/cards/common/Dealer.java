@@ -3,9 +3,27 @@ package com.skilldistillery.cards.common;
 import java.util.*;
 
 public class Dealer extends Person {
+	private String name;
+
+	private List<String> celebrityWashUps = new ArrayList<>();
 
 	public Dealer() {
-		// TODO Auto-generated constructor stub
+		celebrityWashUps.add("Calista Flockhart");
+		celebrityWashUps.add("Jonathan Taylor Thomas");
+		celebrityWashUps.add("Coolio");
+		celebrityWashUps.add("Brendan Fraser");
+		celebrityWashUps.add("Ricki Lake");
+		celebrityWashUps.add("Jim Carey");
+		celebrityWashUps.add("Paris Hilton");
+		celebrityWashUps.add("Sarah Michelle Gellar");
+		celebrityWashUps.add("Lindsay Lohan");
+		celebrityWashUps.add("Ja Rule");
+		celebrityWashUps.add("Renee Zellwegger");
+		celebrityWashUps.add("Megan Fox");
+		celebrityWashUps.add("Hulk Hogan");
+	
+		int num = (int)(Math.random() * celebrityWashUps.size());
+		this.name = "Washed up " + celebrityWashUps.get(num);
 	}
 
 	public Dealer(Hand hand) {
@@ -13,6 +31,14 @@ public class Dealer extends Person {
 		// TODO Auto-generated constructor stub
 	}
 
+	public String getName() {
+		return name;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	@Override
 	public void displayCards() {
 		List<Card> dCards = this.getHand().getCards();
@@ -24,8 +50,6 @@ public class Dealer extends Person {
 				System.out.print("\t"+ dCards.get(i)+",");
 			}
 		}
-//		System.out.println("For a total of " + this.getHand().getHandValue());
-		
 	}
 
 }
