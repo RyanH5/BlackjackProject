@@ -64,7 +64,8 @@ public class BlackJack extends CardGame {
 
 	public void hitOrStand(Scanner sc) throws IOException {
 		boolean playerRefuseCard = false;
-		while (!playerRefuseCard) {
+		boolean playerBusted = false;
+		while (!playerRefuseCard && !playerBusted) {
 			System.out.println();
 			System.out.println("Dealer: Would you like another card? (Y/N)");
 			String anotherCard = sc.next().toUpperCase();
@@ -74,6 +75,7 @@ public class BlackJack extends CardGame {
 				rounders.get(0).getHand().addCard(deck.dealCard());
 				tableLength += 24;
 				displayPlayerCards();
+				playerBusted = playerBustCheck(rounders.get(0).getHand().getHandValue());
 			} else if (anotherCard.contentEquals("N")) {
 				playerRefuseCard = true;
 			} else {
@@ -81,6 +83,21 @@ public class BlackJack extends CardGame {
 				hitOrStand(sc);
 			}
 		}
+	}
+	
+	public boolean playerBustCheck(int cardsTotal) {
+		if(cardsTotal > 21) {
+			System.out.println("Dealer: You busted.  Better luck next time!");
+			rounders.set(0, null);
+			return true;
+		}	else if (cardsTotal > 17) {
+			System.out.println("Dealer: Whew!  Good luck!");
+		}	else if (cardsTotal > 12) {
+			System.out.println("Dealer: Ok! Ok! Living dangerously");
+		}	else {
+			System.out.println("Dealer: Smart play!");
+		}
+		return false;
 	}
 
 }
