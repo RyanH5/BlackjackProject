@@ -8,15 +8,11 @@ import com.skilldistillery.cards.games.*;
 public class CardGame implements Play{
 
 	protected List<Person> rounders;
-	public List<Person> getRounders() {
-		return rounders;
-	}
+	
 
-	public void setRounders(List<Person> rounders) {
-		this.rounders = rounders;
+	public CardGame() {
+		rounders = new ArrayList<>();
 	}
-
-	public CardGame() {}
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -35,18 +31,31 @@ public class CardGame implements Play{
 		String userName = sc.next();
 		switch (response) {
 		case "Y":
-			CardGame currentGame = new BlackJack(deck, userName, sc);
-			currentGame.playGame(sc);
+			CardGame currentGame = new BlackJack(deck, userName, sc, rounders);
+			currentGame.playGame(sc, rounders);
 			break;
-
+			
 		default:
-			currentGame = new BlackJack(deck, userName, sc);
-			currentGame.playGame(sc);
+			currentGame = new BlackJack(deck, userName, sc, rounders);
+			currentGame.playGame(sc, rounders);
 		}
 	}
+	
+	public List<Person> getRounders() {
+		return rounders;
+	}
+	
+	public void setRounders(List<Person> rounders) {
+		this.rounders = rounders;
+	}
+	
+	public void addRounder(Person player) {
+		rounders.add(player);
+	}
+	
 
 	@Override
-	public void playGame(Scanner sc) {
+	public void playGame(Scanner sc, List<Person> players) {
 		// TODO Auto-generated method stub
 		
 	}

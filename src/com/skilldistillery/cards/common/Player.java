@@ -1,9 +1,6 @@
 package com.skilldistillery.cards.common;
 
 public class Player extends Person {
-	private String name;
-
-
 
 	public Player(String name) {
 		this.name = name;
@@ -14,10 +11,6 @@ public class Player extends Person {
 		this.name = name;
 		
 		// TODO Auto-generated constructor stub
-	}
-	
-	public String getName() {
-		return name;
 	}
 
 	@Override

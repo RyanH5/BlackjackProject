@@ -12,7 +12,7 @@ public class BlackJack extends CardGame {
 	private boolean endOfRound = false;
 	private int tableLength = 65;
 
-	public BlackJack(Deck deck, String userName, Scanner sc) {
+	public BlackJack(Deck deck, String userName, Scanner sc, List<Person> rounders) {
 		this.deck = deck;
 		List<Person> players = new ArrayList<>();
 		players.add(new Player(userName));
@@ -21,7 +21,7 @@ public class BlackJack extends CardGame {
 
 	}
 
-	public void playGame(Scanner sc) {
+	public void playGame(Scanner sc, List<Person> players) {
 		while (!endOfRound) {
 			System.out.println("Let's play!");
 			deck.shuffle();
@@ -30,6 +30,7 @@ public class BlackJack extends CardGame {
 			displayPlayerCards();
 			try {
 				hitOrStand(sc);
+				determineWinner(rounders);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -88,7 +89,7 @@ public class BlackJack extends CardGame {
 	public boolean playerBustCheck(int cardsTotal) {
 		if(cardsTotal > 21) {
 			System.out.println("Dealer: You busted.  Better luck next time!");
-			rounders.set(0, null);
+			System.out.println();
 			return true;
 		}	else if (cardsTotal > 17) {
 			System.out.println("Dealer: Whew!  Good luck!");
@@ -98,6 +99,18 @@ public class BlackJack extends CardGame {
 			System.out.println("Dealer: Smart play!");
 		}
 		return false;
+	}
+	
+	public void determineWinner(List<Person> rounders) {
+		
+		if (rounders.get(0).getHand().getHandValue() > rounders.get(rounders.size()-1).getHand().getHandValue() &&
+				rounders.get(0).getHand().getHandValue() <= 21) {
+			System.out.println(rounders.get(0).getName() + " wins!");
+		}	else {
+			System.out.println(rounders.get(0).getName() + ": Did I really just lose to " + rounders.get(rounders.size()-1).getName() + "?");
+			System.out.println("Hey would you sign my T-shirt?");
+			System.out.println(rounders.get(rounders.size()-1).getName() + ": get out!");
+		}
 	}
 
 }
