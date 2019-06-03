@@ -57,14 +57,6 @@ public class Dealer extends Person {
 			System.out.print("\tTotal: " + this.getHand().getHandValue());
 		}
 	}
-	
-//	public void displayCards() {
-//		System.out.print(name + ":");
-//		for(Card c : this.getHand().getCards()) {
-//			System.out.print("\t\t" + c.toString()+",");
-//		}
-//		System.out.println("\tTotal: " + this.getHand().getHandValue());
-//	}
 
 	public boolean isMidHand() {
 		return midHand;
