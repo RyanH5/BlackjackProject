@@ -20,6 +20,5 @@ public class Player extends Person {
 			System.out.print("\t\t" + c.toString()+",");
 		}
 		System.out.println("\tTotal: " + this.getHand().getHandValue());
-		
 	}
 }

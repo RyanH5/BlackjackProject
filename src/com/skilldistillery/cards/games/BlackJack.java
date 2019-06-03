@@ -15,8 +15,8 @@ public class BlackJack extends CardGame {
 	public BlackJack(Deck deck, String userName, Scanner sc, List<Person> rounders) {
 		this.deck = deck;
 		List<Person> players = new ArrayList<>();
-		players.add(new Player(userName));
 		players.add(new Dealer());
+		players.add(new Player(userName));
 		this.setRounders(players);
 
 	}
@@ -73,10 +73,10 @@ public class BlackJack extends CardGame {
 			if (anotherCard.equals("Y")) {
 				System.out.println("********** HIT **********");
 				System.out.println();
-				rounders.get(0).getHand().addCard(deck.dealCard());
+				rounders.get(1).getHand().addCard(deck.dealCard());
 				tableLength += 24;
 				displayPlayerCards();
-				playerBusted = playerBustCheck(rounders.get(0).getHand().getHandValue());
+				playerBusted = playerBustCheck(rounders.get(1).getHand().getHandValue());
 			} else if (anotherCard.contentEquals("N")) {
 				playerRefuseCard = true;
 			} else {
@@ -102,14 +102,17 @@ public class BlackJack extends CardGame {
 	}
 	
 	public void determineWinner(List<Person> rounders) {
+		((Dealer)rounders.get(0)).setMidHand(false);
 		
-		if (rounders.get(0).getHand().getHandValue() > rounders.get(rounders.size()-1).getHand().getHandValue() &&
-				rounders.get(0).getHand().getHandValue() <= 21) {
-			System.out.println(rounders.get(0).getName() + " wins!");
+		if (rounders.get(0).getHand().getHandValue() < rounders.get(rounders.size()-1).getHand().getHandValue() &&
+				rounders.get(1).getHand().getHandValue() <= 21) {
+			displayPlayerCards();
+			System.out.println(rounders.get(1).getName() + " wins!");
 		}	else {
-			System.out.println(rounders.get(0).getName() + ": Did I really just lose to " + rounders.get(rounders.size()-1).getName() + "?");
+			displayPlayerCards();
+			System.out.println(rounders.get(1).getName() + ": Did I really just lose to " + rounders.get(0).getName() + "?");
 			System.out.println("Hey would you sign my T-shirt?");
-			System.out.println(rounders.get(rounders.size()-1).getName() + ": get out!");
+			System.out.println(rounders.get(0).getName() + ": get out!");
 		}
 	}
 

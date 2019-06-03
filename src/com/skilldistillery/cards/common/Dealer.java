@@ -4,6 +4,8 @@ import java.util.*;
 
 public class Dealer extends Person {
 	private String name;
+	private boolean midHand;
+
 
 	private List<String> celebrityWashUps = new ArrayList<>();
 
@@ -24,6 +26,7 @@ public class Dealer extends Person {
 	
 		int num = (int)(Math.random() * celebrityWashUps.size());
 		this.name = "Washed up " + celebrityWashUps.get(num);
+		this.midHand = true;
 	}
 
 	public Dealer(Hand hand) {
@@ -44,12 +47,30 @@ public class Dealer extends Person {
 		List<Card> dCards = this.getHand().getCards();
 		System.out.print("Dealer: ");
 		for (int i = 0; i < dCards.size(); i++) {
-			if (i == 0) {
+			if (i == 0  && midHand) {
 				System.out.print("\t" + "**HIDDEN CARD**,");
 			}	else {
-				System.out.print("\t"+ dCards.get(i)+",");
+				System.out.print("\t"+ dCards.get(i)+",\t");
 			}
 		}
+		if (!midHand) {
+			System.out.print("\tTotal: " + this.getHand().getHandValue());
+		}
 	}
+	
+//	public void displayCards() {
+//		System.out.print(name + ":");
+//		for(Card c : this.getHand().getCards()) {
+//			System.out.print("\t\t" + c.toString()+",");
+//		}
+//		System.out.println("\tTotal: " + this.getHand().getHandValue());
+//	}
 
+	public boolean isMidHand() {
+		return midHand;
+	}
+	
+	public void setMidHand(boolean midHand) {
+		this.midHand = midHand;
+	}
 }
