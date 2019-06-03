@@ -29,7 +29,7 @@ public class BlackJack extends CardGame {
 			dealCards();
 			displayPlayerCards();
 			try {
-				hitOrStand(sc);
+				hitOrStand(sc, rounders);
 				determineWinner(rounders);
 			} catch (IOException e) {
 				e.printStackTrace();
@@ -63,7 +63,7 @@ public class BlackJack extends CardGame {
 		}
 	}
 
-	public void hitOrStand(Scanner sc) throws IOException {
+	public void hitOrStand(Scanner sc, List<Person> players) throws IOException {
 		boolean playerRefuseCard = false;
 		boolean playerBusted = false;
 		while (!playerRefuseCard && !playerBusted) {
@@ -79,11 +79,12 @@ public class BlackJack extends CardGame {
 				playerBusted = playerBustCheck(rounders.get(1).getHand().getHandValue());
 			} else if (anotherCard.contentEquals("N")) {
 				playerRefuseCard = true;
+				dealerTakeCards(players);
 			} else {
 				System.out.println("INVALID ENTRY!");
-				hitOrStand(sc);
+				hitOrStand(sc, players);
 			}
-		}
+		}	
 	}
 	
 	public boolean playerBustCheck(int cardsTotal) {
@@ -101,18 +102,27 @@ public class BlackJack extends CardGame {
 		return false;
 	}
 	
+	public void dealerTakeCards(List<Person> rounders) {
+		while (rounders.get(0).getHand().getHandValue() < 17 && 
+				rounders.get(0).getHand().getHandValue() < 21) {
+			rounders.get(0).getHand().addCard(deck.dealCard());
+		}
+		
+	}
+	
 	public void determineWinner(List<Person> rounders) {
 		((Dealer)rounders.get(0)).setMidHand(false);
 		
-		if (rounders.get(0).getHand().getHandValue() < rounders.get(rounders.size()-1).getHand().getHandValue() &&
-				rounders.get(1).getHand().getHandValue() <= 21) {
-			displayPlayerCards();
-			System.out.println(rounders.get(1).getName() + " wins!");
-		}	else {
+		if (rounders.get(0).getHand().getHandValue() >= rounders.get(0).getHand().getHandValue() &&
+				rounders.get(0).getHand().getHandValue() <= 21 ||
+				rounders.get(1).getHand().getHandValue() > 21) {
 			displayPlayerCards();
 			System.out.println(rounders.get(1).getName() + ": Did I really just lose to " + rounders.get(0).getName() + "?");
-			System.out.println("Hey would you sign my T-shirt?");
+			System.out.println("Hey, " + rounders.get(0).getName() + " would you sign my T-shirt?");
 			System.out.println(rounders.get(0).getName() + ": get out!");
+		}	else {
+			displayPlayerCards();
+			System.out.println(rounders.get(1).getName() + " wins!");
 		}
 	}
 
